@@ -26,6 +26,7 @@ export class Navbar extends Component {
               </form>
             </div>
           </div>
+           
         </nav>
       </div>
     )

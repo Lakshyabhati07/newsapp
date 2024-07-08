@@ -27,9 +27,9 @@ export default class News extends Component {
                         return (
                             <div className="col-md-3 my-2" key={element.url}>
                                 <NewsItem
-                                    title={element.title ? element.title.slice(0, 45) : " "}
-                                    description={element.description ? element.description.slice(0, 80) : ""}
-                                    imageUrl={element.urlToImage}
+                                    title={element.title ? element.title.slice(0, 40) : " "}
+                                    description={element.description ? element.description.slice(0, 70) : ""}
+                                    imageUrl={element.urlToImage?element.urlToImage:"https://www.dreamstime.com/photos-images/news.html"}
                                     url={element.url}
                                 />
                             </div>
