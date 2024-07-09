@@ -18,6 +18,33 @@ export default class News extends Component {
         this.setState({ articles: parsedData.articles });
     }
 
+   handleNext =async()=>{
+
+    let url = `https://newsapi.org/v2/everything?q=keyword&apiKey=383325ee8db1465ab7ac95fd6821d970=${this.state.page+1}`;
+    let data = await fetch(url);
+    let parsedData = await data.json();
+
+        this.setState({
+           
+            page:this.state.page+1,
+            articles: parsedData.articles
+        })
+    }
+
+    handlePrev =async()=>{
+
+        let url = `https://newsapi.org/v2/everything?q=keyword&apiKey=383325ee8db1465ab7ac95fd6821d970=${this.state.page-1}`;
+        let data = await fetch(url);
+        let parsedData = await data.json();
+    
+            this.setState({
+               
+                page:this.state.page-1,
+                articles: parsedData.articles
+            })
+            console.log(parsedData);
+        }
+    
     render() {
         return (
             <div className='container my-3'>
@@ -36,6 +63,11 @@ export default class News extends Component {
                         );
                     })}
                 </div>
+                <div class="d-flex justify-content-between">
+                <button disabled={this.state.page<=1} className="btn btn-outline-dark" type="submit" onClick={this.handlePrev}>&larr; Previous</button>
+                <button className="btn btn-outline-dark" type="submit" onClick={this.handleNext}>Next &rarr;</button>
+                </div>
+                
             </div>
         )
     }
