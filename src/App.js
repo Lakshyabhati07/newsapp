@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 
 
 
+
 export default  class App extends Component {
  //we use this.___
   render() {
@@ -13,7 +14,6 @@ export default  class App extends Component {
       <div>
         <Navbar/>
         <News pagesize={10}/>
-
         <Footer/>
       </div>
     )
