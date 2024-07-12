@@ -6,34 +6,39 @@ export default class News extends Component {
         super();
         this.state = {
             articles: [],
-            loading: false
+            loading: false,
+            page:1
         }
     }
 
     async componentDidMount(){
-        let url = "https://newsapi.org/v2/everything?q=keyword&apiKey=383325ee8db1465ab7ac95fd6821d970";
+        let url = `https://newsapi.org/v2/everything?q=keyword&apiKey=383325ee8db1465ab7ac95fd6821d970&page=1&pagesize=${this.props.pagesize}`;
         let data = await fetch(url);
         let parsedData = await data.json();
         console.log(parsedData);
-        this.setState({ articles: parsedData.articles });
+        this.setState({ articles: parsedData.articles,totalResults :parsedData.totalResults });
     }
 
    handleNext =async()=>{
+    if(this.state.page+1 > Math.ceil(this.state.totalResults/this.props.pagesize)){
 
-    let url = `https://newsapi.org/v2/everything?q=keyword&apiKey=383325ee8db1465ab7ac95fd6821d970=${this.state.page+1}`;
-    let data = await fetch(url);
-    let parsedData = await data.json();
+    }
+    else{
+        let url = `https://newsapi.org/v2/everything?q=keyword&apiKey=383325ee8db1465ab7ac95fd6821d970&page=${this.state.page+1} & pagesize=${this.props.pagesize}`;
+        let data = await fetch(url);
+        let parsedData = await data.json();
 
-        this.setState({
-           
-            page:this.state.page+1,
-            articles: parsedData.articles
-        })
+            this.setState({
+            
+                page:this.state.page+1,
+                articles: parsedData.articles
+            })
+        }
     }
 
     handlePrev =async()=>{
 
-        let url = `https://newsapi.org/v2/everything?q=keyword&apiKey=383325ee8db1465ab7ac95fd6821d970=${this.state.page-1}`;
+        let url = `https://newsapi.org/v2/everything?q=keyword&apiKey=383325ee8db1465ab7ac95fd6821d970&page=${this.state.page-1} & pagesize=${this.props.pagesize}`;
         let data = await fetch(url);
         let parsedData = await data.json();
     
@@ -48,7 +53,7 @@ export default class News extends Component {
     render() {
         return (
             <div className='container my-3'>
-                <h2>Top Headlines of today</h2>   
+                <h2 className='text-center'>Top Headlines of today</h2>   
                 <div className="row mx-2">
                     {this.state.articles.map((element) => {
                         return (
@@ -56,7 +61,7 @@ export default class News extends Component {
                                 <NewsItem
                                     title={element.title ? element.title.slice(0, 40) : " "}
                                     description={element.description ? element.description.slice(0, 70) : ""}
-                                    imageUrl={element.urlToImage?element.urlToImage:"https://www.dreamstime.com/photos-images/news.html"}
+                                    imageUrl={element.urlToImage?element.urlToImage:"./image.png"}
                                     url={element.url}
                                 />
                             </div>
