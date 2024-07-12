@@ -80,10 +80,12 @@ export default class News extends Component {
                         return (
                             <div className="col-md-3 my-2" key={element.url}>
                                 <NewsItem
-                                    title={element.title ? element.title.slice(0, 40) : " "}
-                                    description={element.description ? element.description.slice(0, 70) : ""}
+                                    title={element.title ? element.title : " "}
+                                    description={element.description ? element.description : ""}
                                     imageUrl={element.urlToImage?element.urlToImage:image}
                                     url={element.url}
+                                    author={element.author}
+                                    publishedAt={element.publishedAt}
                                 />
                             </div>
                         );
