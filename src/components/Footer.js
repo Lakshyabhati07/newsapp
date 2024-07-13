@@ -22,7 +22,7 @@ export class Footer extends Component {
                                     href="/"
                                     role="button"
                                 >
-                                    <i className="fab fa-daily"></i>
+                                    <i className="fab fa-send"></i>
                                 </a>
 
                                 <a
@@ -63,10 +63,8 @@ export class Footer extends Component {
                             className="text-center p-3"
                             style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
                         >
-                            © 2024 Copyright:
-                            <a className="text-white" href="/">
-                                Lakshya Bhati
-                            </a>
+                            © 2024 Copyright : Lakshya Bhati
+                            
                         </div>
                     </footer>
                 </div>
